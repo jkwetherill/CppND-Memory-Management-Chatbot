@@ -62,8 +62,8 @@ void ChatBotFrame::OnEnter(wxCommandEvent &WXUNUSED(event))
     _userTextCtrl->Clear();
 
     // send user text to chatbot 
-     //_panelDialog->GetChatLogicHandle()->SendMessageToChatbot(std::string(userText.mb_str()));
-     _panelDialog->_chatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
+     _panelDialog->GetChatLogicHandle()->SendMessageToChatbot(std::string(userText.mb_str()));
+     //_panelDialog->_chatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
      
 }
 
@@ -198,8 +198,8 @@ ChatBotPanelDialogItem::ChatBotPanelDialogItem(wxPanel *parent, wxString text, b
     : wxPanel(parent, -1, wxPoint(-1, -1), wxSize(-1, -1), wxBORDER_NONE)
 {
     // retrieve image from chatbot
-    //wxBitmap *bitmap = isFromUser == true ? nullptr : ((ChatBotPanelDialog*)parent)->GetChatLogicHandle()->GetImageFromChatbot(); 
-    wxBitmap *bitmap = isFromUser == true ? nullptr : ((ChatBotPanelDialog*)parent)->_chatLogic->GetImageFromChatbot(); 
+    wxBitmap *bitmap = isFromUser == true ? nullptr : ((ChatBotPanelDialog*)parent)->GetChatLogicHandle()->GetImageFromChatbot(); 
+    //wxBitmap *bitmap = isFromUser == true ? nullptr : ((ChatBotPanelDialog*)parent)->_chatLogic->GetImageFromChatbot(); 
 
 
     // create image and text

@@ -19,13 +19,15 @@ private:
 
     //std::unique_ptr<ChatLogic> _chatLogic;
     //ChatLogic *_chatLogic;
+    std::unique_ptr<ChatLogic> _chatLogic;
+    //std::shared_ptr<ChatLogic> _chatLogic;
 
     ////
     //// EOF STUDENT CODE
 
 public:
 
-    std::unique_ptr<ChatLogic> _chatLogic;
+    
 
     // constructor / destructor
     ChatBotPanelDialog(wxWindow *parent, wxWindowID id);
@@ -34,6 +36,12 @@ public:
     // getter / setter
     //std::unique_ptr<ChatLogic> GetChatLogicHandle() { return _chatLogic; }
     //auto GetChatLogicHandle() {return _chatLogic; }
+    std::unique_ptr<ChatLogic>& GetChatLogicHandle() 
+    {
+        //std::weak_ptr<ChatLogic> pWeakChatLogic = _chatLogic;
+        //return pWeakChatLogic;
+        return _chatLogic;
+    }
 
     // events
     void paintEvent(wxPaintEvent &evt);
