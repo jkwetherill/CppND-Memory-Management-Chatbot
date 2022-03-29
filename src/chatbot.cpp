@@ -45,6 +45,56 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// ChabBot Copy Constructor
+ChatBot::ChatBot(ChatBot& obj)
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    _image     = obj._image;
+    _chatLogic = obj._chatLogic;
+    _rootNode  = obj._rootNode;    
+}
+
+
+// Move constructor
+ChatBot::ChatBot(ChatBot&& obj)
+{
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    //this is kind of looking like a move 
+    _image     = obj._image;
+    _chatLogic = obj._chatLogic;
+    _rootNode  = obj._rootNode;
+    obj._image     = NULL;
+    obj._chatLogic = nullptr;
+    obj._rootNode  = nullptr;
+}
+
+
+// Copy Assignment
+ChatBot& ChatBot::operator= (const ChatBot& obj)
+{
+    std::cout << "ChatBot Copy Assignment" << std::endl;
+
+    if (this == &obj)
+        return *this;
+
+    if (_image != NULL && _image != nullptr)
+        delete _image;
+    
+
+    /*///// not sure whether these deletes should happen ////////
+    if (_chatLogic != nullptr)
+        delete _chatLogic;
+
+     if (_rootNode != nullptr)
+        delete _rootNode;
+    ///////////////////////////////////////////////////////*/
+
+    _image = obj._image;
+    _chatLogic = obj._chatLogic;
+    _rootNode = obj._rootNode;
+
+}
+
 ////
 //// EOF STUDENT CODE
 
