@@ -30,7 +30,9 @@ private:
 
     // data handles (not owned)
     GraphNode *_currentNode;
-    ChatBot *_chatBot;
+    //ChatBot *_chatBot;
+    //std::shared_ptr<ChatBot> _chatBot;
+    std::unique_ptr<ChatBot> _chatBot;
     ChatBotPanelDialog *_panelDialog;
 
     // proprietary type definitions
