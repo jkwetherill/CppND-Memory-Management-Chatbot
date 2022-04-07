@@ -232,10 +232,14 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     //ChatBot ChatBotCopy = *_chatBot;
     //std::shared_ptr<ChatBot> ChatBotCopy =_chatBot;
     //chatBot.reset();
-    ChatBot LocalChatBotInstance;
 
     // add chatbot to graph root node
     _chatBot->SetRootNode(rootNode);
+
+
+    ChatBot LocalChatBotInstance(std::move(*_chatBot.get()));
+
+
     //rootNode->MoveChatbotHere(_chatBot);
     //rootNode->MoveChatbotHere(std::move(pchatbot));
     //rootNode->MoveChatbotHere(std::move(ChatBotCopy));

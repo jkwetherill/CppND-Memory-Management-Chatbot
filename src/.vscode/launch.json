@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/workspace/workspace3/CppND-Memory-Management-Chatbot/build/membot",
+            "program": "/home/workspace/workspace3/CppND-Memory-Management-Chatbot/build3/membot",
             "args": [],
             "stopAtEntry": false,
             "cwd": "/home/workspace/workspace3/CppND-Memory-Management-Chatbot/src",

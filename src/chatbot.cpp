@@ -51,7 +51,13 @@ ChatBot::ChatBot(ChatBot& obj)
     std::cout << "ChatBot Copy Constructor" << std::endl;
     _image     = obj._image;
     _chatLogic = obj._chatLogic;
-    _rootNode  = obj._rootNode;    
+    _rootNode  = obj._rootNode;   
+    _currentNode = obj._currentNode;
+
+
+    //GraphNode *_currentNode;
+    //GraphNode *_rootNode;
+    //ChatLogic *_chatLogic; 
 }
 
 
@@ -63,9 +69,11 @@ ChatBot::ChatBot(ChatBot&& obj)
     _image     = obj._image;
     _chatLogic = obj._chatLogic;
     _rootNode  = obj._rootNode;
+    _currentNode = obj._currentNode;
     obj._image     = NULL;
     obj._chatLogic = nullptr;
     obj._rootNode  = nullptr;
+    obj._currentNode = nullptr;
 }
 
 
@@ -92,6 +100,7 @@ ChatBot& ChatBot::operator= (const ChatBot& obj)
     _image = obj._image;
     _chatLogic = obj._chatLogic;
     _rootNode = obj._rootNode;
+    _currentNode = obj._currentNode;
 
 }
 

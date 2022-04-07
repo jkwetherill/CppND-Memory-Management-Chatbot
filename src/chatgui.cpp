@@ -62,7 +62,9 @@ void ChatBotFrame::OnEnter(wxCommandEvent &WXUNUSED(event))
     _userTextCtrl->Clear();
 
     // send user text to chatbot 
-     _panelDialog->GetChatLogicHandle()->SendMessageToChatbot(std::string(userText.mb_str()));
+    std::unique_ptr<ChatLogic>& pChatLogic = _panelDialog->GetChatLogicHandle();
+    pChatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
+     //_panelDialog->GetChatLogicHandle()->SendMessageToChatbot(std::string(userText.mb_str()));
      //_panelDialog->_chatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
      
 }

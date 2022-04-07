@@ -40,7 +40,7 @@ public:
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
-    void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; }
+    void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; _currentNode = rootNode;}
     void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
     ChatLogic* GetChatLogicHandle() { return _chatLogic; }
     wxBitmap *GetImageHandle() { return _image; }
