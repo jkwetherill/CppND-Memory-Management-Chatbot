@@ -62,7 +62,8 @@ void ChatBotFrame::OnEnter(wxCommandEvent &WXUNUSED(event))
     _userTextCtrl->Clear();
 
     // send user text to chatbot 
-    std::unique_ptr<ChatLogic>& pChatLogic = _panelDialog->GetChatLogicHandle();
+    //std::unique_ptr<ChatLogic>& pChatLogic = _panelDialog->GetChatLogicHandle();
+    ChatLogic* pChatLogic = _panelDialog->GetChatLogicHandle();
     pChatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
      //_panelDialog->GetChatLogicHandle()->SendMessageToChatbot(std::string(userText.mb_str()));
      //_panelDialog->_chatLogic->SendMessageToChatbot(std::string(userText.mb_str()));
@@ -122,7 +123,8 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    _chatLogic.reset(new ChatLogic());
+    //_chatLogic.reset(new ChatLogic());
+    _chatLogic = new ChatLogic();
     //_chatLogic = std::shared_ptr<ChatLogic>(new ChatLogic()); 
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI

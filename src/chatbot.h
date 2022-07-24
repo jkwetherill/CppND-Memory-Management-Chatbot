@@ -35,12 +35,20 @@ public:
 
     ChatBot& operator= (const ChatBot& obj);
 
+    ChatBot& operator=(ChatBot&& obj);
+
     ////
     //// EOF STUDENT CODE
 
     // getters / setters
     void SetCurrentNode(GraphNode *node);
-    void SetRootNode(GraphNode *rootNode) { _rootNode = rootNode; _currentNode = rootNode;}
+    void SetRootNode(GraphNode *rootNode); /* { 
+
+        _currentNode->_chatBot = nullptr;
+        _rootNode = rootNode; 
+        _currentNode = rootNode;
+        rootNode->_chatBot = this;
+        }*/
     void SetChatLogicHandle(ChatLogic *chatLogic) { _chatLogic = chatLogic; }
     ChatLogic* GetChatLogicHandle() { return _chatLogic; }
     wxBitmap *GetImageHandle() { return _image; }

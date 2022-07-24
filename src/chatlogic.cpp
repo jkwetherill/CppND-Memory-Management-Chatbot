@@ -19,11 +19,12 @@ ChatLogic::ChatLogic()
     ////
 
     // create instance of chatbot
-    //_chatBot = new ChatBot("../images/chatbot.png");
-    _chatBot.reset(new ChatBot("../images/chatbot.png"));
+    _chatBot = new ChatBot("../images/chatbot.png");
+    //_chatBot.reset(new ChatBot("../images/chatbot.png"));
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
     _chatBot->SetChatLogicHandle(this);
+
 
 
 
@@ -37,7 +38,7 @@ ChatLogic::~ChatLogic()
     ////
 
     // delete chatbot instance
-    //delete _chatBot;
+    delete _chatBot;
 
     // delete all nodes
     for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it)
@@ -46,10 +47,10 @@ ChatLogic::~ChatLogic()
     }
 
     // delete all edges
-    for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
-    {
-        //delete *it;
-    }
+   for (auto it = std::begin(_edges); it != std::end(_edges); ++it)
+   {
+        delete *it;
+   }
 
     ////
     //// EOF STUDENT CODE
@@ -237,14 +238,58 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     _chatBot->SetRootNode(rootNode);
 
 
-    ChatBot LocalChatBotInstance(std::move(*_chatBot.get()));
+
+    //ChatBot RValRef{std::move(*_chatBot.get())};
+
+//_currentNode->MoveChatbotHere(*this);
+//_currentNode->MoveChatbotHere(*this);    
+//ChatBot LocalChatBotInstance(std::move(*_chatBot.get()));
+    //ChatBot LocalChatBotInstance(std::move(*_chatBot)); // my quesion is: when I do this here do I invalidate
+
+    //ChatBot LocalChatBotInstance = ChatBot("../images/chatbot.png");
+
+    //LocalChatBotInstance = std::move(*_chatBot);
+    //delete(_chatBot);
+    //_chatBot = &LocalChatBotInstance;
+
+    //LocalChatBotInstance = std::move(*_chatBot);
+
+    //LocalChatBotInstance.SetRootNode(rootNode);
+
+    //if there are 2 chatbots floating around, and they are both going to be destroyed, then we need 2 images
+
+    // What is in a chatbot
+
+    //ChatBot LocalChatBotInstance;
+
+    // I don't fundamentally understand moving a dereferenced pointer
+    // what is moved?
+    // is it a copy of the contents of the pointer or the pointer itself
 
 
     //rootNode->MoveChatbotHere(_chatBot);
     //rootNode->MoveChatbotHere(std::move(pchatbot));
     //rootNode->MoveChatbotHere(std::move(ChatBotCopy));
     //rootNode->MoveChatbotHere(ChatBotCopy);
-    rootNode->MoveChatbotHere(std::move(LocalChatBotInstance));
+    //rootNode->MoveChatbotHere(std::move(LocalChatBotInstance));
+
+    
+    //ChatBot LocalChatBot1{};ChatBot("../images/chatbot.png");
+    
+    ChatBot LocalChatBot1("../images/chatbot.png");
+    LocalChatBot1 = std::move(*_chatBot);
+    //ChatBot LocalChatBot = std::move(*_chatBot);
+    //ChatBot LocalChatBot2{std::move(*_chatBot)};
+    rootNode->MoveChatbotHere(std::move(LocalChatBot1));
+
+    //rootNode->MoveChatbotHere(&LocalChatBotInstance);
+
+
+    //rootNode->MoveChatbotHere(std::move(*_chatBot));
+
+    //rootNode->MoveChatbotHere(std::move(*_chatBot.get()));
+
+    //rootNode->MoveChatbotHere(RValRef);
     ////
     //// EOF STUDENT CODE
 }
@@ -256,8 +301,8 @@ void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)
 
 void ChatLogic::SetChatbotHandle(ChatBot *chatbot)
 {
-    //_chatBot = chatbot;
-    _chatBot.reset(chatbot);
+    _chatBot = chatbot;
+    //_chatBot.reset(chatbot);
 }
 
 void ChatLogic::SendMessageToChatbot(std::string message)

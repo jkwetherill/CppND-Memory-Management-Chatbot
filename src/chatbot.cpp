@@ -15,6 +15,7 @@ ChatBot::ChatBot()
     _image = nullptr;
     _chatLogic = nullptr;
     _rootNode = nullptr;
+    _currentNode = nullptr;
 }
 
 // constructor WITH memory allocation
@@ -25,8 +26,9 @@ ChatBot::ChatBot(std::string filename)
     // invalidate data handles
     _chatLogic = nullptr;
     _rootNode = nullptr;
+    _currentNode = nullptr;
 
-    // load image into heap memory
+    // load image into hRValRef)eap memory
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
@@ -46,6 +48,7 @@ ChatBot::~ChatBot()
 ////
 
 // ChabBot Copy Constructor
+
 ChatBot::ChatBot(ChatBot& obj)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
@@ -58,7 +61,10 @@ ChatBot::ChatBot(ChatBot& obj)
     //GraphNode *_currentNode;
     //GraphNode *_rootNode;
     //ChatLogic *_chatLogic; 
+
+    _chatLogic->SetChatbotHandle(this);
 }
+
 
 
 // Move constructor
@@ -66,14 +72,35 @@ ChatBot::ChatBot(ChatBot&& obj)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
     //this is kind of looking like a move 
-    _image     = obj._image;
+    //_image     = obj._image;
     _chatLogic = obj._chatLogic;
     _rootNode  = obj._rootNode;
     _currentNode = obj._currentNode;
+
+
+    _image = new wxBitmap();
+    *_image = *obj._image; // deep copy
+    
+
+
     obj._image     = NULL;
     obj._chatLogic = nullptr;
     obj._rootNode  = nullptr;
     obj._currentNode = nullptr;
+
+    _chatLogic->SetChatbotHandle(this);
+
+
+    //std::unique_ptr<ChatBot> pChatBot {this};
+    //_currentNode->MoveChatbotHere(std::move(*this));
+    // _currentNode->_chatBot.set(this);
+    // _currentNode->_chatBot.reset(this);
+     //_rootNode->_chatBot.reset(this);
+    //_currentNode->MoveChatbotHere(*this);
+    
+
+
+
 }
 
 
@@ -85,8 +112,8 @@ ChatBot& ChatBot::operator= (const ChatBot& obj)
     if (this == &obj)
         return *this;
 
-    if (_image != NULL && _image != nullptr)
-        delete _image;
+    //if (_image != NULL && _image != nullptr)
+        //delete _image; // this should only happen when the chatbot destructor is called
     
 
     /*///// not sure whether these deletes should happen ////////
@@ -102,7 +129,37 @@ ChatBot& ChatBot::operator= (const ChatBot& obj)
     _rootNode = obj._rootNode;
     _currentNode = obj._currentNode;
 
+    _chatLogic->SetChatbotHandle(this);
+
 }
+
+// Move Assignment
+ChatBot& ChatBot::operator=(ChatBot&& obj)
+{
+    std::cout << "Chatbot Move Assignment" << std::endl;
+
+    if (this == &obj)
+    {
+        return *this;
+    }
+
+    _image     = obj._image;
+    _chatLogic = obj._chatLogic;
+    _rootNode  = obj._rootNode;
+    _currentNode = obj._currentNode;
+    
+
+
+    obj._image     = NULL;
+    obj._chatLogic = nullptr;
+    obj._rootNode  = nullptr;
+    obj._currentNode = nullptr;
+
+    _chatLogic->SetChatbotHandle(this);
+
+}
+
+
 
 ////
 //// EOF STUDENT CODE
@@ -145,6 +202,9 @@ void ChatBot::SetCurrentNode(GraphNode *node)
 {
     // update pointer to current node
     _currentNode = node;
+   // _chatLogic. = node;
+
+   
 
     // select a random node answer (if several answers should exist)
     std::vector<std::string> answers = _currentNode->GetAnswers();
@@ -204,4 +264,16 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2)
     delete[] costs;
 
     return result;
+}
+
+void ChatBot::SetRootNode(GraphNode *rootNode)
+{
+
+    if (_currentNode != nullptr)
+    {
+        //_currentNode->_chatBot = nullptr;
+    }
+    _rootNode = rootNode;
+    //_currentNode = rootNode;
+    //rootNode->_chatBot = this;
 }

@@ -8,10 +8,10 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/home/workspace/workspace3/CppND-Memory-Management-Chatbot/build3/membot",
+            "program": "/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot/build4/membot",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "/home/workspace/workspace3/CppND-Memory-Management-Chatbot/src",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -20,8 +20,14 @@
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
+                },
+                {
+                    "description":  "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
                 }
             ]
         }
+        
     ]
-}
+ }

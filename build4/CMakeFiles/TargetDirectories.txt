@@ -1,0 +1,3 @@
+/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot/build4/CMakeFiles/membot.dir
+/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot/build4/CMakeFiles/edit_cache.dir
+/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot/build4/CMakeFiles/rebuild_cache.dir

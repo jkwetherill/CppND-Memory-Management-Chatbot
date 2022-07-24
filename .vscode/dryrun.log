@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot'
+make: Leaving directory '/home/julia/Documents/UdacityProjects/CppND-Memory-Management-Chatbot'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
