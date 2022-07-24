@@ -59,9 +59,6 @@ ChatBot::ChatBot(ChatBot& obj)
     _currentNode = obj._currentNode;
 
 
-    //GraphNode *_currentNode;
-    //GraphNode *_rootNode;
-    //ChatLogic *_chatLogic; 
 
     _chatLogic->SetChatbotHandle(this);
 }
@@ -92,12 +89,7 @@ ChatBot::ChatBot(ChatBot&& obj)
     _chatLogic->SetChatbotHandle(this);
 
 
-    //std::unique_ptr<ChatBot> pChatBot {this};
-    //_currentNode->MoveChatbotHere(std::move(*this));
-    // _currentNode->_chatBot.set(this);
-    // _currentNode->_chatBot.reset(this);
-     //_rootNode->_chatBot.reset(this);
-    //_currentNode->MoveChatbotHere(*this);
+
     
 
 
@@ -113,17 +105,7 @@ ChatBot& ChatBot::operator= (const ChatBot& obj)
     if (this == &obj)
         return *this;
 
-    //if (_image != NULL && _image != nullptr)
-        //delete _image; // this should only happen when the chatbot destructor is called
-    
 
-    /*///// not sure whether these deletes should happen ////////
-    if (_chatLogic != nullptr)
-        delete _chatLogic;
-
-     if (_rootNode != nullptr)
-        delete _rootNode;
-    ///////////////////////////////////////////////////////*/
 
     //_image = obj._image;
     _chatLogic = obj._chatLogic;
