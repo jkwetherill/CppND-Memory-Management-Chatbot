@@ -16,7 +16,7 @@ private:
     // data handles (not owned)
     GraphNode *_currentNode;
     GraphNode *_rootNode;
-    ChatLogic *_chatLogic;
+    //ChatLogic *_chatLogic;
 
     // proprietary functions
     int ComputeLevenshteinDistance(std::string s1, std::string s2);
@@ -29,6 +29,9 @@ public:
 
     //// STUDENT CODE
     ////
+
+    ChatLogic* _chatLogic;
+
     ChatBot(ChatBot& obj);
 
     ChatBot(ChatBot&& obj);

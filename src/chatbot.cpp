@@ -52,7 +52,8 @@ ChatBot::~ChatBot()
 ChatBot::ChatBot(ChatBot& obj)
 {
     std::cout << "ChatBot Copy Constructor" << std::endl;
-    _image     = obj._image;
+    _image     = new wxBitmap();
+    *_image = *obj._image;
     _chatLogic = obj._chatLogic;
     _rootNode  = obj._rootNode;   
     _currentNode = obj._currentNode;
@@ -78,8 +79,8 @@ ChatBot::ChatBot(ChatBot&& obj)
     _currentNode = obj._currentNode;
 
 
-    _image = new wxBitmap();
-    *_image = *obj._image; // deep copy
+    _image = obj._image; //new wxBitmap();
+    //*_image = *obj._image; // deep copy
     
 
 
@@ -124,8 +125,10 @@ ChatBot& ChatBot::operator= (const ChatBot& obj)
         delete _rootNode;
     ///////////////////////////////////////////////////////*/
 
-    _image = obj._image;
+    //_image = obj._image;
     _chatLogic = obj._chatLogic;
+     _image     = new wxBitmap();
+    *_image = *obj._image;
     _rootNode = obj._rootNode;
     _currentNode = obj._currentNode;
 
