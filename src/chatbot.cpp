@@ -69,17 +69,12 @@ ChatBot::ChatBot(ChatBot& obj)
 ChatBot::ChatBot(ChatBot&& obj)
 {
     std::cout << "ChatBot Move Constructor" << std::endl;
-    //this is kind of looking like a move 
-    //_image     = obj._image;
     _chatLogic = obj._chatLogic;
     _rootNode  = obj._rootNode;
     _currentNode = obj._currentNode;
 
 
-    _image = obj._image; //new wxBitmap();
-    //*_image = *obj._image; // deep copy
-    
-
+    _image = obj._image; 
 
     obj._image     = NULL;
     obj._chatLogic = nullptr;
@@ -87,12 +82,6 @@ ChatBot::ChatBot(ChatBot&& obj)
     obj._currentNode = nullptr;
 
     _chatLogic->SetChatbotHandle(this);
-
-
-
-    
-
-
 
 }
 
@@ -187,7 +176,7 @@ void ChatBot::SetCurrentNode(GraphNode *node)
 {
     // update pointer to current node
     _currentNode = node;
-   // _chatLogic. = node;
+   
 
    
 
@@ -254,11 +243,6 @@ int ChatBot::ComputeLevenshteinDistance(std::string s1, std::string s2)
 void ChatBot::SetRootNode(GraphNode *rootNode)
 {
 
-    if (_currentNode != nullptr)
-    {
-        //_currentNode->_chatBot = nullptr;
-    }
     _rootNode = rootNode;
-    //_currentNode = rootNode;
-    //rootNode->_chatBot = this;
+
 }
